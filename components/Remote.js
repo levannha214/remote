@@ -2,7 +2,14 @@ import { useEffect,useRef } from 'react';
 import { Icon } from '@rneui/themed';
 import { View, Text, StyleSheet, Image, Animated } from 'react-native';
 const list_button = require("./image/litst_button.png");
+import Svg, { Defs, Rect ,ClipPath,Circle} from 'react-native-svg';
+
 const remote = require('./image/remote.png');
+const next = require('./image/back.png');
+const back = require('./image/next.png');
+const ch = require('./image/button_ch.png');
+
+const arrow = require('./image/button_arrow.png');
 const Remote = ({ check }) => {
    
   
@@ -27,21 +34,31 @@ const Remote = ({ check }) => {
                marginTop:230, with: "100%", height: 25, flexDirection: 'row',
                 justifyContent: 'space-between', paddingLeft: 7, paddingRight: 7,
             }} >
+              
+
+ 
+
                 <View style={{ mixBlendMode: 'overlay', backgroundColor: "rgba(255,255,255,1)",justifyContent:'center',alignItems:"center", width: 23, height: 23, borderColor: "red", borderWidth: 1, borderRadius: 50 }}>
-      <Icon
-        size={10}
-        name='backward'
-        type='font-awesome'
-        color='#000'
-        />
+      <Svg height="20" width="20">
+                    <Defs>
+    <ClipPath id="clip">
+      <Circle cx="50%" cy="50%" r="40%" />
+    </ClipPath>
+                    </Defs>
+                        <Rect x="50" y="50" width="100%" height="100%" borderRadius="50" fill="red"/>
+                        <Image source={next} style={{width:20,height:20,borderRadius:50}} />
+</Svg>
                 </View>
-                <View style={{ mixBlendMode: 'overlay', backgroundColor: "rgba(255,255,255,1)",justifyContent:'center',alignItems:"center", width: 23, height: 23, borderColor: "red", borderWidth: 1, borderRadius: 50 }}>
-                   <Icon
-        size={10}
-        name='forward'
-        type='font-awesome'
-        color='#000'
-        />
+                <View style={{ backgroundColor: "rgba(255,255,255,1)",justifyContent:'center',alignItems:"center", width: 23, height: 23, borderColor: "red", borderWidth: 1, borderRadius: 50 }}>
+            <Svg height="20" width="20">
+                    <Defs>
+    <ClipPath id="clip">
+      <Circle cx="50%" cy="50%" r="40%" />
+    </ClipPath>
+                    </Defs>
+                        <Rect x="50" y="50" width="100%" height="100%" borderRadius="50" fill="red"/>
+                        <Image source={back} style={{width:20,height:20,borderRadius:50}} />
+</Svg>
                 </View>
             </View>
         </View>
@@ -69,25 +86,20 @@ const Remote = ({ check }) => {
         } ></Image>,
         a1: <View style={{  width: '100%', height: "100%", backgroundColor: "rgba(000,000,000,0.75)", position: "absolute", borderRadius: 23 }}>
             <View style={{
-                width: 20, height: 53, marginLeft: 62, borderRadius: 50, marginTop: 175, backgroundColor: "rgba(255,255,255,1)", borderColor: "red", borderWidth: 1,
+                width: 20, height: 53, marginLeft: 62, borderRadius: 50, marginTop: 175, backgroundColor: "rgba(255,255,255,1)", 
             }} >
-                <View style={{ flexDirection: 'column' }}>
-                    <View style={{width:16,height:16,borderRadius:50,backgroundColor:'rgba(000,000,000,0.1)',justifyContent:"center",alignItems:'center',marginTop:1,marginLeft:1}}><Icon
-                        
-                    size={10}
-        name='chevron-up'
-        type='font-awesome'
-        color='#000'
-                    /></View>
-                    <View style={{justifyContent:'center',alignItems:"center",height:15}}><Text style={{fontSize:7,fontWeight:900}}>CH</Text></View>
-                </View>
-                <View style={{ width: 17, height: 17, borderRadius: 50, backgroundColor: 'rgba(000,000,000,0.1)', marginTop: 1, justifyContent: "center", alignItems: 'center' }}>
-                    <Icon
-                    size={10}
-        name='chevron-down'
-        type='font-awesome'
-        color='#000'
-                    /></View> 
+               <Svg height="20" width="53">
+                    <Defs>
+    <ClipPath id="clip">
+      <Circle cx="50%" cy="50%" r="40%" />
+    </ClipPath>
+                    </Defs>
+                    <Rect x="50" y="50" width="20" height="53" fill="red" />
+                        <Image   x="5%" 
+                        y="5%"
+    resizeMode='cover'                    preserveAspectRatio="xMidYMid slice"
+    clipPath="url(#clip)"  source={ch} style={{width:20,height:53,borderRadius:50,borderColor: "red", borderWidth: 1,}}/>
+</Svg>
             </View>
         </View>
     }, {
@@ -99,14 +111,20 @@ const Remote = ({ check }) => {
         } ></Image>,
         a1: <View style={{ width: '100%', height: "100%", backgroundColor: "rgba(000,000,000,0.75)", position: "absolute", borderRadius: 23 }}>
             <View style={{
-                width: 28, height: 18, borderRadius: 50, marginTop: 146, backgroundColor: "rgba(255,255,255,1)", borderColor: "red", borderWidth: 1,
+                width: 24, height: 16, marginTop: 150,marginLeft:8
             }} >
-                 <View style={{justifyContent:"center",alignItems:"center",paddingTop:2}}><Icon
-                    size={10}
-        name='arrow-left'
-        type='font-awesome'
-        color='#000'
-                    /></View>
+                      <Svg height="15" width="22">
+                    <Defs>
+    <ClipPath id="clip">
+      <Circle cx="50%" cy="50%" r="40%" />
+    </ClipPath>
+                    </Defs>
+                    <Rect x="50" y="50" width="20" height="53" fill="red" />
+                        <Image   x="5%" 
+                        y="5%"
+    resizeMode='cover'                    preserveAspectRatio="xMidYMid slice"
+    clipPath="url(#clip)"  source={arrow} style={{width:16,height:12,borderRadius:50,borderColor:'red',borderWidth:1}}/>
+</Svg>
             </View>
         </View>
     },
@@ -149,7 +167,15 @@ const Remote = ({ check }) => {
             <Text style={{
                 color: "#ffffff",fontSize:40}}>?</Text>
      </View>
-    </View > : <Animated.View style={{ marginTop:animationValue}}><View style={{width: 90, overflow: 'hidden' }}>
+    </View > : <Animated.View style={{ marginTop: animationValue }}><View style={{ width: 90, overflow: 'hidden' }}>
+  <View style={styles.container}>       
+<Svg style={styles.overlay} height="100%" width="100%">
+<Defs>
+<Rect id="highlight" x="0" y="0" width="100%" height="100%" fillOpacity="0.7" fill="#000" />
+</Defs>
+<Rect width="100%" height="100%" fill="url(#highlight)" />
+                </Svg>
+                </View>
             {styleRemote.map((item, index) => index === check && item.b1)}
                 {styleRemote.map((item, index) => index === check && item.a1)}
     </View></Animated.View>;
@@ -157,7 +183,22 @@ const Remote = ({ check }) => {
 const styles = StyleSheet.create({
     container: {
         width: 90
-    }
+    },
+    container2: {
+flex: 1,
+position: 'relative',
+},
+image: {
+flex: 1,
+width: '100%',
+height: '100%',
+},
+overlay: {
+position: 'absolute',
+top: 0,
+left: 0,
+zIndex: 999,
+},
 }
 );
 
